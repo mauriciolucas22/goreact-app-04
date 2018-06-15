@@ -2,6 +2,8 @@ import React from 'react';
 
 import './styles/global';
 
-const App = () => <div className="App" />;
+import Sidebar from './components/Sidebar';
+
+const App = () => <Sidebar />;
 
 export default App;
