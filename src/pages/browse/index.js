@@ -1,5 +1,34 @@
 import React from 'react';
 
-const Browse = () => <h1>Jesus loves you!</h1>;
+import { Container, Title, List, Playlist } from './styles';
+
+const Browse = () => (
+  <Container>
+    <Title>Navegar</Title>
+
+    <List>
+      <Playlist href="">
+        <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="playlist" />
+        <strong>Música bacana</strong>
+        <p>Relaxe ao ouvir!</p>
+      </Playlist>
+      <Playlist href="">
+        <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="playlist" />
+        <strong>Música bacana</strong>
+        <p>Relaxe ao ouvir!</p>
+      </Playlist>
+      <Playlist href="">
+        <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="playlist" />
+        <strong>Música bacana</strong>
+        <p>Relaxe ao ouvir!</p>
+      </Playlist>
+      <Playlist href="">
+        <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="playlist" />
+        <strong>Música bacana</strong>
+        <p>Relaxe ao ouvir!</p>
+      </Playlist>
+    </List>
+  </Container>
+);
 
 export default Browse;
