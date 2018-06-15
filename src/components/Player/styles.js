@@ -35,3 +35,14 @@ export const Current = styled.div`
     }
   }
 `;
+
+export const Volume = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100px;
+  margin-right: 20px;
+
+  img {
+    margin-right: 5px;
+  }
+`;

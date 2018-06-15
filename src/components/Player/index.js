@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Container, Current } from './styles';
+import { Container, Current, Volume } from './styles';
+
+import VolumeIcon from '../../assets/images/volume.svg';
 
 const Player = () => (
   <Container>
@@ -12,6 +14,10 @@ const Player = () => (
         <small>Arthist</small>
       </div>
     </Current>
+
+    <Volume>
+      <img src={VolumeIcon} alt="volumn" />
+    </Volume>
   </Container>
 );
 
