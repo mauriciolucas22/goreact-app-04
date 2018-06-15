@@ -1,4 +1,5 @@
 import React from 'react';
+import Slider from 'rc-slider';
 
 import { Container, Current, Volume } from './styles';
 
@@ -17,6 +18,12 @@ const Player = () => (
 
     <Volume>
       <img src={VolumeIcon} alt="volumn" />
+      <Slider
+        railStyle={{ background: '#404040', borderRaius: 10 }}
+        trackStyle={{ background: '#fff' }}
+        handleStyle={{ display: 'none' }}
+        value={100}
+      />
     </Volume>
   </Container>
 );
