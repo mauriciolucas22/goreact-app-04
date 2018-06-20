@@ -12,6 +12,9 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "reactotron-react-js": "^1.13.0",
+    "reactotron-redux": "^1.13.0",
+    "reactotron-redux-saga": "^1.13.0",
     "redux": "^4.0.0",
     "styled-components": "^3.3.2"
   },
