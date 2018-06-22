@@ -14,7 +14,7 @@ export default function playlist(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
 
     case Types.GET_SUCCESS:
-      return { ...state, loading: false, data: action.playload.data };
+      return { ...state, loading: false, data: action.payload.data };
 
     default:
       return state;
@@ -22,12 +22,13 @@ export default function playlist(state = INITIAL_STATE, action) {
 }
 
 export const Actions = {
-  getPlaylistreRequest: () => ({ type: Types.GET_REQUEST }),
+  getPlaylistsRequest: () => ({ type: Types.GET_REQUEST }),
 
-  getPlaylistSuccess: dataPlaylist => ({
+  // data  === Playlists
+  getPlaylistsSuccess: data => ({
     type: Types.GET_SUCCESS,
     payload: {
-      data: dataPlaylist,
+      data,
     },
   }),
 };
