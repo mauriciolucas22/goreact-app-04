@@ -27,41 +27,53 @@ class Playlist extends Component {
     this.props.getPlaylistDetailsRequest(id);
   };
 
-  renderDetails = () => (
-    <Container>
-      <Header>
-        <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="Playlist" />
+  renderDetails = () => {
+    const { playlistDetails } = this.props;
 
-        <div>
-          <span>Playlist</span>
-          <h1>title</h1>
-          <p>10 músicas</p>
+    return (
+      <Container>
+        <Header>
+          <img src={playlistDetails.data.thumbnail} alt={playlistDetails.data.title} />
 
-          <button>Play</button>
-        </div>
-      </Header>
+          <div>
+            <span>Playlist</span>
+            <h1>{playlistDetails.data.title}</h1>
+            { !!playlistDetails.data.songs && <p>{playlistDetails.data.songs.length} músicas</p> }
 
-      <SongList cellPadding={0} cellSpacing={0}>
-        <thead>
-          <th />
-          <th>Título</th>
-          <th>Artista</th>
-          <th>Album</th>
-          <th><img src={ClockIcon} alt="clock" /></th>
-        </thead>
+            <button>Play</button>
+          </div>
+        </Header>
 
-        <tbody>
-          <tr>
-            <td><img src={PlusIcon} alt="plus" /></td>
-            <td>Nome da música</td>
-            <td>Nome do album</td>
-            <td>Nome playlist</td>
-            <td>3:36</td>
-          </tr>
-        </tbody>
-      </SongList>
-    </Container>
-  );
+        <SongList cellPadding={0} cellSpacing={0}>
+          <thead>
+            <th />
+            <th>Título</th>
+            <th>Artista</th>
+            <th>Album</th>
+            <th><img src={ClockIcon} alt="clock" /></th>
+          </thead>
+
+          <tbody>
+            {!playlistDetails.data.songs ? (
+              <tr>
+                <td colSpan={5}>Nenhuma música cadastrada</td>
+              </tr>
+            ) : (
+              playlistDetails.data.songs.map(song => (
+                <tr key={song.id}>
+                  <td><img src={PlusIcon} alt="plus" /></td>
+                  <td>{song.title}</td>
+                  <td>{song.author}</td>
+                  <td>{song.album}</td>
+                  <td>3:36</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </SongList>
+      </Container>
+    );
+  };
 
   render() {
     return this.props.playlistDetails.loading ?
