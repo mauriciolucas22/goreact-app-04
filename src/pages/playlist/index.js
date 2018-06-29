@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,8 +14,39 @@ import ClockIcon from '../../assets/images/clock.svg';
 import PlusIcon from '../../assets/images/plus.svg';
 
 class Playlist extends Component {
+
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.number,
+      }),
+    }).isRequired,
+    getPlaylistDetailsRequest: PropTypes.func.isRequired,
+    playlistDetails: PropTypes.shape({
+      data: PropTypes.shape({
+        id: PropTypes.number,
+        thumbnail: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        songs: PropTypes.shape({
+          id: PropTypes.number,
+          title: PropTypes.string,
+          author: PropTypes.string,
+          album: PropTypes.string,
+        }),
+      }),
+      loading: PropTypes.bool.isRequired,
+    }).isRequired,
+  };
+
   componentDidMount() {
     this.loadPlaylistDetails();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.loadPlaylistDetails();
+    }
   }
 
   /**
