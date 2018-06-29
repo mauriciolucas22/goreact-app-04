@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'rc-slider';
+import Sound from 'react-sound';
 
 import { Container, Current, Volume, Progress, Controls, Time, ProgressSlider } from './styles';
 
@@ -13,6 +14,10 @@ import RepeatIcon from '../../assets/images/repeat.svg';
 
 const Player = () => (
   <Container>
+    {/* <Sound
+      url=""
+    /> */}
+
     <Current>
       <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="album" />
 
