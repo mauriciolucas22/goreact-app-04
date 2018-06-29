@@ -2,6 +2,11 @@ import React from 'react';
 import Slider from 'rc-slider';
 import Sound from 'react-sound';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Actions as PlayerActions } from '../../store/ducks/player';
+
 import { Container, Current, Volume, Progress, Controls, Time, ProgressSlider } from './styles';
 
 import VolumeIcon from '../../assets/images/volume.svg';
@@ -61,4 +66,11 @@ const Player = () => (
   </Container>
 );
 
-export default Player;
+const mapStateToProps = state => ({
+  player: state.player,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(PlayerActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
