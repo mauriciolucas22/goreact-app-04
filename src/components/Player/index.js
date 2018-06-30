@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'rc-slider';
 import Sound from 'react-sound';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,11 +18,14 @@ import PauseIcon from '../../assets/images/pause.svg';
 import ForwardIcon from '../../assets/images/forward.svg';
 import RepeatIcon from '../../assets/images/repeat.svg';
 
-const Player = () => (
+const Player = ({ player }) => (
   <Container>
-    {/* <Sound
-      url=""
-    /> */}
+    { !!player.currentSong && (
+      <Sound
+        url={player.currentSong.file}
+        playStatus={player.status}
+      />
+    )}
 
     <Current>
       <img src="https://www.enorxistrosi.gr/wp-content/uploads/2017/05/vinyl-disc-wallpaper-5589.jpg" alt="album" />
@@ -66,11 +70,17 @@ const Player = () => (
   </Container>
 );
 
+Player.propTypes = {
+  player: PropTypes.shape({
+    currentSong: PropTypes.shape({
+      file: PropTypes.string,
+    }),
+    status: PropTypes.string,
+  }).isRequired,
+};
+
 const mapStateToProps = state => ({
   player: state.player,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(PlayerActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default connect(mapStateToProps)(Player);
