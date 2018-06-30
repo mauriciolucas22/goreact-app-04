@@ -90,6 +90,7 @@ export const SongItem = styled.tr`
     padding: 0 10px;
     line-height: 40px;
     background: ${props => (props.selected ? '#282828' : 'transparent')};
+    color: ${props => (props.playing ? '#1ed760' : '#fff')};
 
     &:first-child {
       width: 80px;

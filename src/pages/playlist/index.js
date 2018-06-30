@@ -38,6 +38,9 @@ class Playlist extends Component {
       loading: PropTypes.bool.isRequired,
     }).isRequired,
     loadSong: PropTypes.func.isRequired,
+    currentSong: PropTypes.shape({
+      id: PropTypes.number,
+    }).isRequired,
   };
 
   state = {
@@ -102,6 +105,7 @@ class Playlist extends Component {
                   onClick={() => this.setState({ selectedSound: song.id })}
                   onDoubleClick={() => this.props.loadSong(song)}
                   selected={this.state.selectedSound === song.id}
+                  playing={this.props.currentSong && this.props.currentSong.id == song.id}
                 >
                   <td><img src={PlusIcon} alt="plus" /></td>
                   <td>{song.title}</td>
@@ -129,6 +133,7 @@ class Playlist extends Component {
 
 const mapStateToProps = state => ({
   playlistDetails: state.playlistDetails,
+  currentSong: state.player.currentSong,
 });
 
 const mapDispatchToProps = dispatch =>
