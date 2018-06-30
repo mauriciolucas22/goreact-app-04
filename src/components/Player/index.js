@@ -4,6 +4,9 @@ import Sound from 'react-sound';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Actions as PlayerActions } from '../../store/ducks/player';
 
 import { Container, Current, Volume, Progress, Controls, Time, ProgressSlider } from './styles';
 
@@ -11,10 +14,11 @@ import VolumeIcon from '../../assets/images/volume.svg';
 import ShuffleIcon from '../../assets/images/shuffle.svg';
 import BackwardIcon from '../../assets/images/backward.svg';
 import PlayIcon from '../../assets/images/play.svg';
+import PauseIcon from '../../assets/images/pause.svg';
 import ForwardIcon from '../../assets/images/forward.svg';
 import RepeatIcon from '../../assets/images/repeat.svg';
 
-const Player = ({ player }) => (
+const Player = ({ player, play, pause }) => (
   <Container>
     { !!player.currentSong && (
       <Sound
@@ -40,7 +44,11 @@ const Player = ({ player }) => (
       <Controls>
         <button><img src={ShuffleIcon} alt="Shuffle" /></button>
         <button><img src={BackwardIcon} alt="Backward" /></button>
-        <button><img src={PlayIcon} alt="Play" /></button>
+        { !!player.currentSong && player.status === Sound.status.PLAYING ? (
+          <button onClick={pause}><img src={PauseIcon} alt="Pause" /></button>
+        ) : (
+          <button onCLick={play}><img src={PlayIcon} alt="Play" /></button>
+        )}
         <button><img src={ForwardIcon} alt="Forward" /></button>
         <button><img src={RepeatIcon} alt="Repeat" /></button>
       </Controls>
@@ -80,10 +88,15 @@ Player.propTypes = {
     }),
     status: PropTypes.string,
   }).isRequired,
+  play: PropTypes.func.isRequired,
+  pause: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   player: state.player,
 });
 
-export default connect(mapStateToProps)(Player);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(PlayerActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
